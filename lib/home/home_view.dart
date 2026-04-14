@@ -42,33 +42,51 @@ class _HomeViewState extends State<HomeView> {
               const SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                
+
+                  // Image.asset("assets/pizzaa.png")
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
                   height: 180,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: const Color(0xffF4A261),
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  child: Stack(
-                    children: [
-                      Center(child: Image.asset("assets/pizzaa.png")),
+                    
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              height: 40,
+                              width: 40,
+                              margin: const EdgeInsets.only(right: 15, bottom: 15),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(Icons.favorite_border),
+                            ),
+                          ],
+                        ),
+                      ),
                       Positioned(
-                        right: 15,
-                        bottom: 15,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(Icons.favorite_border),
+                        top: 0,
+                        
+                        child: Image.asset(
+                          "assets/pizzaa.png",
+                          height: 170,
+                          width: 165,
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
+              
               const SizedBox(height: 20),
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -155,56 +173,58 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               const Spacer(),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 15,
-                ),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "\$32",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 15,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "\$32",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xff1B1B2F),
-                        borderRadius: BorderRadius.circular(30),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xff1B1B2F),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (quantity > 1) quantity--;
+                                });
+                              },
+                              icon: const Icon(Icons.remove, color: Colors.white),
+                            ),
+                            Text(
+                              quantity.toString(),
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  quantity++;
+                                });
+                              },
+                              icon: const Icon(Icons.add, color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                if (quantity > 1) quantity--;
-                              });
-                            },
-                            icon: const Icon(Icons.remove, color: Colors.white),
-                          ),
-                          Text(
-                            quantity.toString(),
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                quantity++;
-                              });
-                            },
-                            icon: const Icon(Icons.add, color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
